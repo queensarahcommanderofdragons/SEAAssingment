@@ -1,0 +1,7 @@
+{% extends "blog/base.html" %}
+{% block content %}
+{% csrf_token %}
+<h1>You have been successfully logged out!</h1>
+<p>Thank you for using MyAccount, have a wonderful day.</p>
+<a href="{% url 'login' %}">Click here to log in again</a>
+{% endblock content %}

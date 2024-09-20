@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div>
+  <h2>Your Bills</h2>
+  <ul>
+  {% for bill in bills %}
+    <li>Address: {{bill.address}} | Amount Due {{ bill.amount_due }} | Due date: {{ bill.due_date }} - {% if bill.is_paid %}Paid{% else %}Unpaid{% endif %}
+      <a href="{% url 'update_bill' bill.id %}">Edit</a> |
+      <a href="{% url 'delete_bill' bill.id %}">Delete</a>
+    </li>
+  {% empty %}
+    <li>No bills found.</li>
+  {% endfor %}
+</ul>
+</div>
+<a href="{% url 'create_bill' %}">Create New Bill</a>
+{% endblock content %}

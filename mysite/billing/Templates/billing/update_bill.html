@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Update Bill</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{ form|crispy}}
+  <button type="submit">Update</button>
+</form>
+<a href="{% url 'view_bills' %}">Back to Bills</a>
+{% endblock content %}
