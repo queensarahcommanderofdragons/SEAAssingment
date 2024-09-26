@@ -3,11 +3,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 
+#this creates the view for the homepage
+
 def home(request):
     context = {
         'Information': Post.objects.all()
     }
     return render(request, 'blog/home.html', context)
+
+# below are the views for 'Engineering a post'
 
 class PostListView(ListView):
     model = Post

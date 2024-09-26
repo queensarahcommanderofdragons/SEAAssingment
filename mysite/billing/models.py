@@ -6,6 +6,8 @@ from Users.models import Profile
 
 # Create your models here.
 
+#this creates the bill model which outlines the fields in a bill
+
 @login_required
 class Bill(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE) #link model to profile

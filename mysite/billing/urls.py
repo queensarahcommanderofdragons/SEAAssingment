@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+#syncs the urls
+
 urlpatterns = [
     path('bills/', views.view_bills, name='view_bills'),
     path('bills/create/', views.create_bill, name='create_bill'),
