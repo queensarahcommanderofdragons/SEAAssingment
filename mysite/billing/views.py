@@ -8,28 +8,29 @@ from django.contrib import messages
 # View all bills for the logged-in user
 @login_required
 def view_bills(request):
-    #get the profile of the logged in user
-    profile = Profile.objects.get(user=request.user)
+    profile = request.user.profile
 
-    #go to all bills linked to profile
-    bills = Bill.objects.filter(profile=profile)
+    bills = Bill.object.filter(profile=profile)
 
-    return render(request, 'billing/view_bills.html', {'bills': bills})
+    return render(request, 'billing/view_bills.html',{'bills': bills})
 
-# Create a new bill, automatically assigned to the logged-in user
+
+# Create a new bill, once logged in but not upon registration
 @login_required
 def create_bill(request):
     if request.method == 'POST':
         form = BillForm(request.POST)
         if form.is_valid():
             bill = form.save(commit=False)
-            bill.user = request.user.profile
+            bill.profile = request.user.profile
             bill.save()
             messages.success(request, 'Bill successfully created')
             return redirect('view_bills')
     else:
         form = BillForm()
+
     return render(request, 'billing/create_bill.html', {'form': form})
+
 
 # Update an existing bill if the user owns it
 @login_required
